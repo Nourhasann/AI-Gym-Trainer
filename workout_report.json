@@ -1,0 +1,18 @@
+{
+  "generated_at": 1786552631.5499918,
+  "total_exercises": 1,
+  "total_reps": 1,
+  "total_correct": 1,
+  "total_incorrect": 0,
+  "exercises": [
+    {
+      "name": "bicep_curl",
+      "total_reps": 1,
+      "correct_reps": 1,
+      "incorrect_reps": 0,
+      "form_score": 100.0
+    }
+  ],
+  "overall_form_score": 100.0,
+  "common_mistakes": {}
+}
