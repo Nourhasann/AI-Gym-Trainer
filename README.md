@@ -140,22 +140,6 @@ detection between exercises:
 4. Run `python main.py` again — it will now guess the exercise instead of
    assuming a single one.
 
-## Using Jupyter instead of the terminal
-
-The `core/` and `exercises/` modules import normally from a notebook as
-long as the notebook lives in the project root. Example:
-
-```python
-from main import run_workout
-report = run_workout(use_classifier=False, forced_exercise="bicep_curl")
-```
-
-If you ever need to stop a camera cell early, use the notebook's interrupt
-(stop) button rather than closing the window — `main.py` and
-`collect_data.py` both use `try/finally` so the camera releases cleanly
-either way. If a camera ever seems stuck/locked afterward, restart the
-kernel rather than repeatedly re-running the cell.
-
 ## Adding a new exercise
 
 Use `exercises/bicep_curl.py` as the template for the next exercise:
@@ -179,11 +163,21 @@ The raw training data (`data/raw/`) and trained classifier
 (`models/exercise_classifier.pkl`) aren't included in this repository to
 keep it lightweight and avoid committing large binary files to git.
 
-- To **run the app as-is**, you don't need them — `main.py` works fine
-  with a single forced exercise without a trained classifier.
-- To **use auto-detection**, either train your own model by following the
-  steps above, or download a pre-trained model/dataset here:
-  *(add your Google Drive / Hugging Face / GitHub Release link here)*
+You have two options for auto-detection:
+
+**Option 1 — Use the provided data/model**
+Download the pre-trained classifier and/or the labeled dataset here:
+*(add your Google Drive / Hugging Face / GitHub Release link here)*
+Drop `exercise_classifier.pkl` into `models/`, or the CSVs into
+`data/raw/`, and you're ready to go.
+
+**Option 2 — Train your own**
+Follow the [Building auto-detection](#building-auto-detection-optional-once-the-basics-are-confirmed-working)
+steps below to record your own data and train a fresh model. This is
+useful if you want the classifier tuned to your own body/camera setup.
+
+> Note: you don't need either of these just to run the app in single-
+> exercise mode — `main.py` works fine without a trained classifier.
 
 ## Screenshots / Demo
 
