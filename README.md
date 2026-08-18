@@ -1,6 +1,7 @@
-#                                   AI Gym Trainer
+# AI Gym Trainer
 
-![Bicep curl form demo](assets/bicep_curl_diagram.png)
+![Bicep curl angle detection diagram](assets/bicep_curl_diagram.svg)
+
 A webcam-based app that watches a workout, automatically detects which
 exercise is being performed, counts reps, checks form, and generates a
 report at the end of the session.
@@ -13,13 +14,15 @@ report at the end of the session.
 - End-of-session workout report (JSON summary)
 - Console mode (`main.py`) and GUI mode (`app.py`)
 
-## Technologies
+## 🛠️ Tech Stack
 
-- Python
-- MediaPipe (pose estimation)
-- OpenCV (webcam capture)
-- Tkinter (GUI)
-- scikit-learn (exercise classifier)
+<p align="left">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
+  <img src="https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white" alt="OpenCV"/>
+  <img src="https://img.shields.io/badge/MediaPipe-0097A7?style=for-the-badge&logo=google&logoColor=white" alt="MediaPipe"/>
+  <img src="https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white" alt="scikit-learn"/>
+  <img src="https://img.shields.io/badge/Tkinter-306998?style=for-the-badge&logo=python&logoColor=white" alt="Tkinter"/>
+</p>
 
 ## How it works (high level)
 
@@ -166,7 +169,7 @@ You have two options for auto-detection:
 
 **Option 1 — Use the provided data/model**
 Download the pre-trained classifier and/or the labeled dataset here:
-*([Click here to download](https://drive.google.com/drive/folders/1Zt0cAKrxMaUIyZQAQ908XTuHSeFlcZSn?usp=drive_link))*
+*(add your Google Drive / Hugging Face / GitHub Release link here)*
 Drop `exercise_classifier.pkl` into `models/`, or the CSVs into
 `data/raw/`, and you're ready to go.
 
