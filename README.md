@@ -167,7 +167,7 @@ You have two options for auto-detection:
 
 **Option 1 — Use the provided data/model**
 Download the pre-trained classifier and/or the labeled dataset here:
-*([add your Google Drive / Hugging Face / GitHub Release link here](https://drive.google.com/drive/folders/1Zt0cAKrxMaUIyZQAQ908XTuHSeFlcZSn?usp=drive_link))*
+*([Click here to download](https://drive.google.com/drive/folders/1Zt0cAKrxMaUIyZQAQ908XTuHSeFlcZSn?usp=drive_link))*
 Drop `exercise_classifier.pkl` into `models/`, or the CSVs into
 `data/raw/`, and you're ready to go.
 
