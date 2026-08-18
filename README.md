@@ -1,6 +1,6 @@
 # AI Gym Trainer
 
-![Bicep curl angle detection diagram](assets/bicep_curl_diagram.svg)
+![Bicep curl angle detection diagram](assets/bicep_curl_diagram.png)
 
 A webcam-based app that watches a workout, automatically detects which
 exercise is being performed, counts reps, checks form, and generates a
