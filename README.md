@@ -1,4 +1,4 @@
-# AI Gym Trainer
+#                                   AI Gym Trainer
 
 ![Bicep curl form demo](assets/bicep_curl_diagram.png)
 A webcam-based app that watches a workout, automatically detects which
