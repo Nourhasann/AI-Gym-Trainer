@@ -1,12 +1,19 @@
 {
-  "generated_at": 1786552631.5499918,
-  "total_exercises": 1,
+  "generated_at": 1787083234.1641054,
+  "total_exercises": 2,
   "total_reps": 1,
   "total_correct": 1,
   "total_incorrect": 0,
   "exercises": [
     {
-      "name": "bicep_curl",
+      "name": "lateral_raise",
+      "total_reps": 0,
+      "correct_reps": 0,
+      "incorrect_reps": 0,
+      "form_score": 100.0
+    },
+    {
+      "name": "shoulder_press",
       "total_reps": 1,
       "correct_reps": 1,
       "incorrect_reps": 0,

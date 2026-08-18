@@ -1,5 +1,24 @@
+# Virtual environment
 .venv/
 venv/
+env/
+
+# Python cache
 __pycache__/
 *.pyc
-.env
+*.pyo
+
+# Data
+data/raw/
+data/processed/
+
+# Models (large binaries)
+models/*.pkl
+
+# OS files
+desktop.ini
+.DS_Store
+
+# IDE
+.vscode/
+.idea/

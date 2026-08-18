@@ -1,5 +1,6 @@
 import pickle
 import numpy as np
+import pandas as pd
 
 from core.angles import calculate_angle, get_landmark_xy
 
@@ -58,7 +59,7 @@ class ExercisePredictor:
     predicted exercise doesn't flicker frame-to-frame.
     """
 
-    def __init__(self, model_path="models/exercise_classifier.pkl", buffer_size=15, min_confidence_votes=0.6):
+    def __init__(self, model_path="models/exercise_classifier.pkl", buffer_size=25, min_confidence_votes=0.75):
         self.model = load_model(model_path)
         self.buffer = []
         self.buffer_size = buffer_size
@@ -70,7 +71,12 @@ class ExercisePredictor:
         if features is None:
             return self.current_label
 
-        prediction = self.model.predict([features])[0]
+        # Wrap in a DataFrame with the same column names used in
+        # train_model.py -- passing a plain list triggers a sklearn
+        # warning on every single frame because the model was fitted
+        # on named columns, not raw arrays.
+        features_df = pd.DataFrame([features], columns=FEATURE_NAMES)
+        prediction = self.model.predict(features_df)[0]
         self.buffer.append(prediction)
         if len(self.buffer) > self.buffer_size:
             self.buffer.pop(0)
