@@ -183,5 +183,4 @@ useful if you want the classifier tuned to your own body/camera setup.
 
 ## Screenshots / Demo
 
-*(Add a screenshot or short GIF of the app in action here — this is one
-of the first things visitors look for.)*
+*(assets/gifgym.gif)*
