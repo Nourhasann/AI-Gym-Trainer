@@ -183,4 +183,6 @@ useful if you want the classifier tuned to your own body/camera setup.
 
 ## Screenshots / Demo
 
-*(assets/gifgym.gif)*
+<p align="center">
+  <img src="assets/gifgym.gif" alt="AI Gym Trainer demo" width="300"/>
+</p>
