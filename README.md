@@ -27,10 +27,9 @@ ai_gym_trainer/
 │   ├── classifier.py         # Feature extraction + exercise auto-detection
 │   └── report.py             # Builds the end-of-workout summary
 ├── exercises/
-│   ├── bicep_curl.py         # ✅ Fully implemented
-│   ├── squat.py              # ⬜ Stub — not implemented yet
-│   ├── shoulder_press.py     # ⬜ Stub — not implemented yet
-│   ├── lateral_raise.py      # ⬜ Stub — not implemented yet
+│   ├── bicep_curl.py       
+│   ├── shoulder_press.py     
+│   ├── lateral_raise.py     
 │   └── __init__.py           # EXERCISES registry (label -> class)
 ├── data/
 │   ├── raw/                  # CSVs saved by collect_data.py
@@ -43,22 +42,6 @@ ai_gym_trainer/
 └── requirements.txt
 ```
 
-## Current status
-
-Only **bicep curl** is fully built: it counts reps for both arms and flags
-a rep as incorrect if the elbow drifts sideways too much during the curl.
-The other three exercises are empty stubs so the rest of the pipeline
-(classifier, report, GUI) has something to reference without crashing.
-
-No model has been trained yet, so `main.py` is currently hardcoded to run
-bicep curl directly, skipping auto-detection:
-
-```python
-run_workout(use_classifier=False, forced_exercise="bicep_curl")
-```
-
-Once you've collected data and trained a model (see below), change that
-last line back to `run_workout()` to enable auto-detection.
 
 ## Setup
 
