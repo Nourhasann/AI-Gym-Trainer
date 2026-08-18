@@ -6,6 +6,22 @@ A webcam-based app that watches a workout, automatically detects which
 exercise is being performed, counts reps, checks form, and generates a
 report at the end of the session.
 
+## Features
+
+- Real-time pose tracking via webcam (no special hardware needed)
+- Automatic exercise detection (bicep curl, shoulder press, lateral raise)
+- Live rep counting with correct/incorrect form feedback
+- End-of-session workout report (JSON summary)
+- Console mode (`main.py`) and GUI mode (`app.py`)
+
+## Technologies
+
+- Python
+- MediaPipe (pose estimation)
+- OpenCV (webcam capture)
+- Tkinter (GUI)
+- scikit-learn (exercise classifier)
+
 ## How it works (high level)
 
 ```
@@ -27,59 +43,94 @@ ai_gym_trainer/
 │   ├── classifier.py         # Feature extraction + exercise auto-detection
 │   └── report.py             # Builds the end-of-workout summary
 ├── exercises/
-│   ├── bicep_curl.py       
-│   ├── shoulder_press.py     
-│   ├── lateral_raise.py     
+│   ├── bicep_curl.py
+│   ├── shoulder_press.py
+│   ├── lateral_raise.py
 │   └── __init__.py           # EXERCISES registry (label -> class)
 ├── data/
-│   ├── raw/                  # CSVs saved by collect_data.py
-│   └── processed/            # (reserved for cleaned/merged datasets)
-├── models/                   # Trained classifier saved here (.pkl)
+│   ├── raw/                  # CSVs saved by collect_data.py (not tracked in git)
+│   └── processed/            # Cleaned/merged datasets (not tracked in git)
+├── models/                   # Trained classifier saved here (.pkl, not tracked in git)
+├── assets/                   # Icons, logos, and diagrams used by the app
 ├── collect_data.py           # Records labeled training data from your webcam
 ├── train_model.py            # Trains the exercise classifier
+├── test_exercise.py          # Standalone test for a single exercise module
 ├── main.py                   # Console workout loop (no GUI)
 ├── app.py                    # Tkinter GUI version
 └── requirements.txt
 ```
 
+> **Note:** `data/`, `models/*.pkl`, and the virtual environment are excluded
+> from this repository via `.gitignore` to keep it lightweight. See
+> [Data & Model Files](#data--model-files) below for how to get them.
 
-## Setup
+## Getting Started (Step by Step)
 
-### 1. Install dependencies
+### 1. Clone the repository
 
+```bash
+git clone https://github.com/Nourhasann/AI-Gym-Trainer.git
+cd AI-Gym-Trainer
 ```
+
+### 2. Create a virtual environment (recommended)
+
+```bash
+python -m venv .venv
+```
+Activate it:
+- **Windows:** `.venv\Scripts\activate`
+- **Mac/Linux:** `source .venv/bin/activate`
+
+### 3. Install dependencies
+
+```bash
 pip install -r requirements.txt
 ```
 
-### 2. Run the bicep curl test (no training needed yet)
+### 4. Run the app
 
-```
+**Console mode** — quickest way to try it out:
+```bash
 python main.py
 ```
-
 A window opens showing your webcam feed with a live rep counter,
 correct/incorrect count, and feedback text. Do some real curls, then some
 intentionally sloppy ones (swing your elbow out) to see the form-check
 kick in. Press **q** with the window focused to quit — it saves
 `workout_report.json` in the project folder.
 
-## Building auto-detection (once bicep curl is confirmed working)
+**GUI mode** — a friendlier interface:
+```bash
+python app.py
+```
+Opens a Tkinter window with Start Workout / Finish Workout buttons, a live
+camera feed, and a report panel shown after you finish. Run this from a
+terminal, not from inside Jupyter — Tkinter's event loop doesn't play well
+with notebooks.
+
+## Building auto-detection (optional, once the basics are confirmed working)
+
+By default the app can run in single-exercise mode. To enable automatic
+detection between exercises:
 
 1. **Collect labeled data** — run once per label, doing that exercise (or
    standing idle) in front of the camera:
-   ```
+   ```bash
    python collect_data.py --label bicep_curl
+   python collect_data.py --label shoulder_press
+   python collect_data.py --label lateral_raise
    python collect_data.py --label idle
    ```
    Press `r` to start/stop recording samples, `q` to save and quit.
 
 2. **Train the classifier:**
-   ```
+   ```bash
    python train_model.py
    ```
    This saves `models/exercise_classifier.pkl`.
 
-3. **Switch `main.py` back to auto-detect mode** — edit the last line of
+3. **Switch `main.py` to auto-detect mode** — edit the last line of
    `main.py`:
    ```python
    if __name__ == "__main__":
@@ -87,18 +138,7 @@ kick in. Press **q** with the window focused to quit — it saves
    ```
 
 4. Run `python main.py` again — it will now guess the exercise instead of
-   assuming bicep curl.
-
-## Running the GUI
-
-```
-python app.py
-```
-
-Opens a Tkinter window with Start Workout / Finish Workout buttons, a live
-camera feed, and a report panel shown after you finish. Run this from a
-terminal, not from inside Jupyter — Tkinter's event loop doesn't play well
-with notebooks.
+   assuming a single one.
 
 ## Using Jupyter instead of the terminal
 
@@ -118,12 +158,34 @@ kernel rather than repeatedly re-running the cell.
 
 ## Adding a new exercise
 
-Once bicep curl is solid, use it as the template for the next exercise:
+Use `exercises/bicep_curl.py` as the template for the next exercise:
 
-1. Open the relevant stub in `exercises/` (e.g. `squat.py`) and implement
+1. Create a new file in `exercises/` (e.g. `push_up.py`) and implement
    `update()` following the pattern in `bicep_curl.py` — compute the
    relevant joint angle(s), run an up/down state machine on angle
    thresholds, and add a form check.
-2. Collect labeled data for it: `python collect_data.py --label squat`
-3. Retrain: `python train_model.py`
-4. Test it standalone first: `run_workout(use_classifier=False, forced_exercise="squat")`
+2. Register it in `exercises/__init__.py`'s `EXERCISES` dictionary.
+3. Collect labeled data for it: `python collect_data.py --label push_up`
+4. Retrain: `python train_model.py`
+5. Test it standalone first:
+   ```python
+   run_workout(use_classifier=False, forced_exercise="push_up")
+   ```
+   or run `test_exercise.py` against it.
+
+## Data & Model Files
+
+The raw training data (`data/raw/`) and trained classifier
+(`models/exercise_classifier.pkl`) aren't included in this repository to
+keep it lightweight and avoid committing large binary files to git.
+
+- To **run the app as-is**, you don't need them — `main.py` works fine
+  with a single forced exercise without a trained classifier.
+- To **use auto-detection**, either train your own model by following the
+  steps above, or download a pre-trained model/dataset here:
+  *(add your Google Drive / Hugging Face / GitHub Release link here)*
+
+## Screenshots / Demo
+
+*(Add a screenshot or short GIF of the app in action here — this is one
+of the first things visitors look for.)*
