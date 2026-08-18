@@ -1,0 +1,59 @@
+<svg viewBox="0 0 700 360" xmlns="http://www.w3.org/2000/svg">
+  <rect width="700" height="360" fill="#111318"/>
+
+  <!-- Panel 1: arm extended (down) -->
+  <g transform="translate(60,40)">
+    <text x="90" y="0" fill="#9aa4b2" font-family="Arial, sans-serif" font-size="16" text-anchor="middle">Stage: DOWN (angle &gt; 160°)</text>
+
+    <!-- torso -->
+    <line x1="90" y1="30" x2="90" y2="150" stroke="#e8eaed" stroke-width="6" stroke-linecap="round"/>
+    <!-- head -->
+    <circle cx="90" cy="15" r="16" fill="#e8eaed"/>
+    <!-- shoulder to elbow to wrist, extended -->
+    <circle cx="90" cy="55" r="6" fill="#ffcc66"/>
+    <line x1="90" y1="55" x2="130" y2="120" stroke="#e8eaed" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="130" cy="120" r="6" fill="#66d9ff"/>
+    <line x1="130" y1="120" x2="120" y2="190" stroke="#e8eaed" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="120" cy="190" r="6" fill="#ff6b8b"/>
+    <!-- legs -->
+    <line x1="90" y1="150" x2="70" y2="250" stroke="#e8eaed" stroke-width="6" stroke-linecap="round"/>
+    <line x1="90" y1="150" x2="110" y2="250" stroke="#e8eaed" stroke-width="6" stroke-linecap="round"/>
+
+    <!-- angle arc label -->
+    <text x="150" y="115" fill="#66d9ff" font-family="Arial, sans-serif" font-size="14">≈170°</text>
+    <text x="20" y="290" fill="#9aa4b2" font-family="Arial, sans-serif" font-size="13">shoulder → elbow → wrist</text>
+  </g>
+
+  <!-- arrow between panels -->
+  <g transform="translate(330,150)">
+    <line x1="0" y1="0" x2="60" y2="0" stroke="#4caf7d" stroke-width="4"/>
+    <polygon points="60,-8 78,0 60,8" fill="#4caf7d"/>
+    <text x="35" y="-16" fill="#4caf7d" font-family="Arial, sans-serif" font-size="13" text-anchor="middle">rep counted</text>
+  </g>
+
+  <!-- Panel 2: arm curled (up) -->
+  <g transform="translate(460,40)">
+    <text x="90" y="0" fill="#9aa4b2" font-family="Arial, sans-serif" font-size="16" text-anchor="middle">Stage: UP (angle &lt; 30°)</text>
+
+    <!-- torso -->
+    <line x1="90" y1="30" x2="90" y2="150" stroke="#e8eaed" stroke-width="6" stroke-linecap="round"/>
+    <!-- head -->
+    <circle cx="90" cy="15" r="16" fill="#e8eaed"/>
+    <!-- shoulder to elbow (fixed) to wrist curled up -->
+    <circle cx="90" cy="55" r="6" fill="#ffcc66"/>
+    <line x1="90" y1="55" x2="130" y2="120" stroke="#e8eaed" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="130" cy="120" r="6" fill="#66d9ff"/>
+    <line x1="130" y1="120" x2="95" y2="75" stroke="#e8eaed" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="95" cy="75" r="6" fill="#ff6b8b"/>
+    <!-- legs -->
+    <line x1="90" y1="150" x2="70" y2="250" stroke="#e8eaed" stroke-width="6" stroke-linecap="round"/>
+    <line x1="90" y1="150" x2="110" y2="250" stroke="#e8eaed" stroke-width="6" stroke-linecap="round"/>
+
+    <text x="150" y="115" fill="#66d9ff" font-family="Arial, sans-serif" font-size="14">≈25°</text>
+    <text x="10" y="290" fill="#9aa4b2" font-family="Arial, sans-serif" font-size="13">elbow angle crosses threshold</text>
+  </g>
+
+  <text x="350" y="335" fill="#5b6370" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">
+    calculate_angle(shoulder, elbow, wrist) drives the rep-counting state machine
+  </text>
+</svg>
